@@ -1,26 +1,45 @@
-import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { removeToDo } from "./redux/slice/todo";
+import { updateStatus } from "./redux/slice/todo";
+
+import { Badge } from "react-bootstrap";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 // eslint-disable-next-line react/prop-types
-const ToDoItem = ({ id, task }) => {
+const ToDoItem = (todo) => {
 
-  console.log("ToDoItem props:", { id, task })
+  const { task, isDone, createdAt, updatedAt, onClickRemove, id } = todo;
 
   const dispatch = useDispatch();
+  const handleClick = ({ id }) => {
+    dispatch(updateStatus({ id }))
+    console.log('clicked');
+  }
 
-  const handleDelete = () => {
-    console.log("Deleting item with id:", id)
-    dispatch(removeToDo({ id }));
-  };
+  console.log();
 
   return (
-    <div className="d-flex justify-content-between align-items-center mb-2">
-      <div>{task}</div>
-      <Button variant="danger" onClick={handleDelete}>
-        Delete
-      </Button>
-    </div>
+    <tr>
+            <td>
+                <p className={`todo-item ${isDone && "done"}`}>{task}</p>
+                <Badge bg="secondary">{createdAt}</Badge>
+            </td>
+            <td>
+                <Badge bg={isDone ? 'success' : 'danger'}>{isDone ? 'Done' : 'Pending'}</Badge>
+                {isDone && <p>{updatedAt}</p>}
+            </td>
+            {!isDone &&
+                <td>
+                    <div style={{ color: 'green' }} onClick={() => handleClick({ id })}>
+                        <FaCheck />
+                    </div>
+                </td>
+            }
+            <td colSpan={isDone ? 2 : 1}>
+                <div style={{ color: 'red' }} onClick={() => onClickRemove({ id })}>
+                    <FaTimes />
+                </div>
+            </td>
+        </tr>
   )
 }
 

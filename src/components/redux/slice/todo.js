@@ -12,7 +12,7 @@ const toDoSlice = createSlice({
         },
         updateStatus(state, action) {
             const updateAt = new Date().toLocaleString();
-            state.list = state.list.map((todo) => todo.id === action.payload ? {...todo, isDone : true, updateAt} : todo);
+            state.list = state.list.map((todo) => todo.id === action.payload?.id ? {...todo, isDone : true, updateAt} : todo);
         }
     }
 })

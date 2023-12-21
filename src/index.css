@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+svg {
+    cursor: pointer;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.App {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px 4px #bfbfbf;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.title {
+    text-align: center;
+    color: white;
+    background-color: #764abc;
+    padding: 8px;
+    font-size: 30px;
+    margin: 0;
+}
+
+.table {
+    margin: 0;
+}
+
+.todo-item.done {
+    text-decoration: line-through;
+    opacity: 0.8;
+}

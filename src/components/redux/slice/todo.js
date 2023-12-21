@@ -13,11 +13,16 @@ const toDoSlice = createSlice({
         updateStatus(state, action) {
             const updateAt = new Date().toLocaleString();
             state.list = state.list.map((todo) => todo.id === action.payload?.id ? {...todo, isDone : true, updateAt} : todo);
+        },
+        editToDo(state, action) {
+            const { id, name } = action.payload;
+            const updateAt = new Date().toLocaleString();
+            state.list = state.list.map((todo) => (todo.id === id ? { ...todo, name, updateAt } : todo));
         }
     }
 })
 
 const { actions, reducer } = toDoSlice;
 
-export const { addToDo, removeToDo, updateStatus } = actions;
+export const { addToDo, removeToDo, updateStatus, editToDo } = actions;
 export default reducer;
